@@ -9,6 +9,8 @@ import java.util.List;
 public class User {
     private String name;
     private static int registeredNumber = 1;
+
+
     private int id;
     private List<Book> books;
 
@@ -59,5 +61,23 @@ public class User {
      */
     public void giveBackBook(Book book) {
         books.remove(book);
+    }
+
+    /**
+     * Gets the name of the user.
+     *
+     * @return The name of the user.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Gets the id of the user.
+     *
+     * @return The id of the user.
+     */
+    public Integer getId() {
+        return id;
     }
 }

@@ -46,5 +46,38 @@ public class Library {
             }
         }
     }
+
+    /**
+     * Display the list of users registered in the library.
+     */
+    public static void viewUsers() {
+        users.forEach(System.out::println);
+    }
+
+    /**
+     * Add a new user to the library.
+     *
+     * @param name The name of the user.
+     */
+    public static void addUser(String name) {
+        User user = new User(name);
+        users.add(user);
+    }
+
+    /**
+     * Delete a registered user from the library.
+     *
+     * @param id The id of the registered user to delete.
+     */
+    public static void deleteUser(int id) {
+        Iterator<User> iterator = users.iterator();
+        while (iterator.hasNext()) {
+            User user = iterator.next();
+            if (user.getId().equals(id)) {
+                iterator.remove();
+                System.out.println("Utilisateur supprimé : " + user.toString());
+            }
+        }
+    }
 }
 
