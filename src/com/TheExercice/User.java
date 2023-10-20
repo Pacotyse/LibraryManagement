@@ -17,6 +17,11 @@ public class User {
         this.books = new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        return name + "#" + id;
+    }
+
     public void borrowBook(Book book) {
         books.add(book);
         System.out.println(book.toString() + " a été emprunté par " + name);

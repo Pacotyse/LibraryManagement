@@ -6,5 +6,6 @@ public class Main {
         User user = new User("Enzo");
         user.borrowBook(book);
         user.giveBackBook(book);
+        System.out.println(user.toString());
     }
 }
