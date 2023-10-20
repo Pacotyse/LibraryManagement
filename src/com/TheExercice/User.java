@@ -16,4 +16,9 @@ public class User {
         this.id = registeredNumber++;
         this.books = new ArrayList<>();
     }
+
+    public void borrowBook(Book book) {
+        books.add(book);
+        System.out.println(book.toString() + " a été emprunté par " + name);
+    }
 }
