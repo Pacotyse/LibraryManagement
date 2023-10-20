@@ -1,6 +1,7 @@
 package com.TheExercice;
 
 public class Book {
+
     private String title;
     private String author;
     private int releaseDate;
@@ -13,5 +14,9 @@ public class Book {
     @Override
     public String toString() {
         return title + " par " + author + " de " + releaseDate;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }
