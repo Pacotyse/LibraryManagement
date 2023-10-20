@@ -5,5 +5,6 @@ public class Main {
         Book book = new Book("2001 l'Odyssey de l'espace", "Arthur Clark", 1981);
         User user = new User("Enzo");
         user.borrowBook(book);
+        user.giveBackBook(book);
     }
 }
