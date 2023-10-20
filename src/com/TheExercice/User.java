@@ -27,6 +27,10 @@ public class User {
         System.out.println(book.toString() + " a été emprunté par " + name);
     }
 
+    public boolean borrowedBook(Book book) {
+        return books.contains(book);
+    }
+
     public void giveBackBook(Book book) {
         books.remove(book);
         System.out.println(book.toString() + " a été rendu par " + name);

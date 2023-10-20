@@ -2,6 +2,9 @@ package com.TheExercice;
 
 public class Loan {
     public Loan(Book book, User user) {
-        user.borrowBook(book);
+        if (user.borrowedBook(book))
+            System.out.println(book.toString() + " est déjà emprunté par " + user.toString());
+        else
+            user.borrowBook(book);
     }
 }
