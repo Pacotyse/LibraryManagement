@@ -12,16 +12,26 @@ public class Loan {
     private Date returnDate;
 
     public Loan(Book book, User user) {
-        if (user.borrowedBook(book)) {
-            System.out.println(book.toString() + " est déjà emprunté par " + user.toString());
-        } else {
             this.book = book;
             this.user = user;
+
+        if (!user.borrowedBook(book)) {
+            borrowBook();
+
             borrowingDate = calendar.getTime();
             calendar.add(Calendar.DAY_OF_MONTH, LOAN_DURATION_DAY);
             returnDate = calendar.getTime();
-            user.borrowBook(book);
+        } else {
+            System.out.println(this.user + " possède déjà " + this.book.getTitle());
         }
+    }
+
+    private void borrowBook() {
+        user.borrowBook(book);
+    }
+
+    public void returnBook() {
+        user.giveBackBook(book);
     }
 
     public String toString() {
