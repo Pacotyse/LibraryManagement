@@ -5,6 +5,6 @@ public class Main {
         Library.addBook("2001 l'Odyssey de l'espace", "Arthur Clark", 1981);
         Library.addBook("Jujutsu Kaisen", "Gege Akutani", 2018);
         Library.deleteBook("Jujutsu Kaisen");
-        Library.viewBook();
+        Library.viewBooks();
     }
 }

@@ -3,6 +3,9 @@ package com.TheExercice;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * This class represents a loan of a book to a user in a library.
+ */
 public class Loan {
     private Book book;
     private User user;
@@ -11,9 +14,15 @@ public class Loan {
     private static final int LOAN_DURATION_DAY = 14;
     private Date returnDate;
 
+    /**
+     * Constructs a new Loan object for the specified book and user.
+     *
+     * @param book The book to be loaned.
+     * @param user The user to whom the book is loaned.
+     */
     public Loan(Book book, User user) {
-            this.book = book;
-            this.user = user;
+        this.book = book;
+        this.user = user;
 
         if (!user.borrowedBook(book)) {
             borrowBook();
@@ -26,14 +35,26 @@ public class Loan {
         }
     }
 
+    /**
+     * Allows the user to borrow the book associated with this loan.
+     */
     private void borrowBook() {
         user.borrowBook(book);
     }
 
+    /**
+     * Allows the user to return the book to the library.
+     */
     public void returnBook() {
         user.giveBackBook(book);
     }
 
+    /**
+     * Returns a string representation of the loan in the format "Book Title -> User".
+     *
+     * @return The string representation of the loan.
+     */
+    @Override
     public String toString() {
         return book.getTitle() + " -> " + user.toString();
     }
