@@ -30,41 +30,6 @@ public class Library {
     }
 
     /**
-     * Display the list of books in the library.
-     */
-    public static void viewBooks() {
-        books.forEach(System.out::println);
-    }
-
-    /**
-     * Add a new book to the library.
-     *
-     * @param title       The title of the book.
-     * @param author      The author of the book.
-     * @param releaseDate The release date of the book.
-     */
-    public static void addBook(String mainTitle, String subTitle, int volume, int releaseDate, String author) {
-        Book book = new Book(mainTitle, subTitle, volume, releaseDate, author);
-        books.add(book);
-        System.out.println(book.toString() + " a été ajouté");
-    }
-
-    /**
-     * Delete a book from the library by its title.
-     *
-     * @param title The title of the book to delete.
-     */
-    public static void deleteBook(String title) {
-        Book book = findBy(books, b -> b.getMainTitle().equals(title) );
-        if (book != null) {
-            books.remove(book);
-            System.out.println("Le livre " + book + " a été supprimé");
-        } else {
-            System.out.println("Aucun livre ne correspond à : " + title);
-        }
-    }
-
-    /**
      * Display the list of users registered in the library.
      */
     public static void viewUsers() {

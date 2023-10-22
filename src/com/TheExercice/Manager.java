@@ -12,7 +12,7 @@ public interface Manager {
      * @param <T>       The type of elements in the ArrayList and the Predicate.
      * @return The first item in the ArrayList that satisfies the given Predicate, or null if no such item is found.
      */
-    public static <T> T findBy(List<T> list, Predicate<T> predicate) {
+    static <T> T findBy(List<T> list, Predicate<T> predicate) {
         for (T item : list) {
             if (predicate.test(item)) {
                 return item;
@@ -20,12 +20,4 @@ public interface Manager {
         }
         return null;
     }
-
-    void viewAll();
-
-    void viewOne();
-
-    void add();
-
-    void delete();
 }
