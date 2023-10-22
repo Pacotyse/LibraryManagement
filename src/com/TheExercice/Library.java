@@ -69,11 +69,11 @@ public class Library {
      *
      * @param id The id of the registered user to delete.
      */
-    public static void deleteUser(int id) {
+    public static void deleteUser(String id) {
         Iterator<User> iterator = users.iterator();
         while (iterator.hasNext()) {
             User user = iterator.next();
-            if (user.getId().equals(id)) {
+            if (user.toString().equals(id)) {
                 iterator.remove();
                 System.out.println("Utilisateur supprimé : " + user.toString());
             }

@@ -9,9 +9,7 @@ import java.util.List;
 public class User {
     private String name;
     private static int registeredNumber = 1;
-
-
-    private int id;
+    private String id;
     private List<Book> books;
 
     /**
@@ -21,18 +19,18 @@ public class User {
      */
     public User(String name) {
         this.name = name;
-        this.id = registeredNumber++;
+        this.id = name + "#" + registeredNumber++;
         this.books = new ArrayList<>();
     }
 
     /**
-     * Returns a string representation of the user in the format "Name#ID".
+     * Returns ID as a string representation of the user in the format "Name#ID".
      *
      * @return The string representation of the user.
      */
     @Override
     public String toString() {
-        return name + "#" + id;
+        return id;
     }
 
     /**
@@ -70,14 +68,5 @@ public class User {
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * Gets the id of the user.
-     *
-     * @return The id of the user.
-     */
-    public Integer getId() {
-        return id;
     }
 }
