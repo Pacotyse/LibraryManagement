@@ -3,6 +3,9 @@ package com.TheExercice;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents all interactions with the book database.
+ */
 public class BookManager implements Manager {
     private static final List<Book> books = new ArrayList<>();
 
@@ -13,7 +16,6 @@ public class BookManager implements Manager {
         // Iterate through the list of books and print each book's details.
         books.forEach(System.out::println);
     }
-
 
     /**
      * Adds a new book to the library with the specified details.
