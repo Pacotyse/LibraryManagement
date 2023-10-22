@@ -7,7 +7,6 @@ import java.util.Date;
  * This class represents a loan of a book to a user in a library.
  */
 public class Loan {
-
     private Book book;
     private User user;
     Calendar calendar = Calendar.getInstance();
@@ -53,7 +52,7 @@ public class Loan {
      */
     @Override
     public String toString() {
-        return book.getTitle() + " -> " + user.toString();
+        return book.getMainTitle() + " -> " + user.toString();
     }
 
     public Book getBook() {

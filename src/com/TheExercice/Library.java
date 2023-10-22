@@ -1,7 +1,6 @@
 package com.TheExercice;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -44,8 +43,8 @@ public class Library {
      * @param author      The author of the book.
      * @param releaseDate The release date of the book.
      */
-    public static void addBook(String title, String author, int releaseDate) {
-        Book book = new Book(title, author, releaseDate);
+    public static void addBook(String mainTitle, String subTitle, int volume, int releaseDate, String author) {
+        Book book = new Book(mainTitle, subTitle, volume, releaseDate, author);
         books.add(book);
         System.out.println(book.toString() + " a été ajouté");
     }
@@ -56,7 +55,7 @@ public class Library {
      * @param title The title of the book to delete.
      */
     public static void deleteBook(String title) {
-        Book book = findBy(books, b -> b.getTitle().equals(title) );
+        Book book = findBy(books, b -> b.getMainTitle().equals(title) );
         if (book != null) {
             books.remove(book);
             System.out.println("Le livre " + book + " a été supprimé");
@@ -112,14 +111,14 @@ public class Library {
      * @param userId The user's id who borrow the book.
      */
     public static void addLoan(String title, String userId) {
-        Book book = findBy(books, b -> b.getTitle().equals(title));
+        Book book = findBy(books, b -> b.getMainTitle().equals(title));
         User user = findBy(users, u -> u.toString().equals(userId));
         if (book != null && user != null) {
             if (!user.borrowedBook(book)) {
                 Loan loan = new Loan(book, user);
                 loans.add(loan);
             } else {
-                System.out.println(user.toString() + " possède déjà " + book.getTitle());
+                System.out.println(user.toString() + " possède déjà " + book.getMainTitle());
             }
         }
     }
@@ -130,15 +129,15 @@ public class Library {
      * @param title The title of the book associated with the loan to delete.
      */
     public static void deleteLoan(String title) {
-        Book book = findBy(books, b -> b.getTitle().equals(title));
+        Book book = findBy(books, b -> b.getMainTitle().equals(title));
         if (book != null) {
             Loan loan = findBy(loans, b -> b.getBook().equals(book));
             if (loan != null) {
                 loan.getUser().giveBackBook(book);
                 loans.remove(loan);
-                System.out.println(loan.getUser().toString() + " a rendu " + book.getTitle());
+                System.out.println(loan.getUser().toString() + " a rendu " + book.getMainTitle());
             } else {
-                System.out.println(book.getTitle() + " n'a pas été emprunté");
+                System.out.println(book.getMainTitle() + " n'a pas été emprunté");
             }
         } else {
             System.out.println(title + " n'existe pas");
