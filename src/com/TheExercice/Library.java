@@ -109,16 +109,14 @@ public class Library {
      * Add a new loan to the library.
      *
      * @param title The title of book that must be borrowed.
-     * @param user The user who borrow the book.
+     * @param userId The user's id who borrow the book.
      */
-    public static void addLoan(String title, User user) {
-        Iterator<Book> iterator = books.iterator();
-        while (iterator.hasNext()) {
-            Book book = iterator.next();
-            if (book.getTitle().equals(title)) {
+    public static void addLoan(String title, String userId) {
+        Book book = findBy(books, b -> b.getTitle().equals(title));
+        User user = findBy(users, u -> u.toString().equals(userId));
+        if (book != null && user != null) {
             Loan loan = new Loan(book, user);
             loans.add(loan);
-            }
         }
     }
 }
