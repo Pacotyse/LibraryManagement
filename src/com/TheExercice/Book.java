@@ -3,12 +3,13 @@ package com.TheExercice;
 /**
  * This class represents a book with a title, author, release date, and volume.
  */
-public class Book {
-    private String mainTitle;
-    private String subTitle = null;
-    private int volume;
-    private int releaseDate;
-    private String author;
+public class Book implements ReferenceGenerator {
+    private final String reference;
+    private final String mainTitle;
+    private final String subTitle;
+    private final int volume;
+    private final int releaseDate;
+    private final String author;
 
     /**
      * Constructs a new Book object with the specified mainTitle, subTitle, volume, release date, and author.
@@ -25,16 +26,39 @@ public class Book {
         this.volume = volume;
         this.releaseDate = releaseDate;
         this.author = author;
+        this.reference = generateRef();
     }
 
     /**
-     * Returns a string representation of the book in the format "Title by Author of Release Date".
+     * Generates a reference code for the book based on its main title and volume.
+     * The reference code is a combination of the first three characters of the main title
+     * and the volume number.
+     *
+     * @return The generated reference code.
+     */
+    @Override
+    public String generateRef() {
+        return mainTitle.substring(0, 3) + volume;
+    }
+
+    /**
+     * Returns a string representation of the book in the format "#Reference | Title - Subtitle by Author (Release Date)".
      *
      * @return The string representation of the book.
      */
     @Override
     public String toString() {
-        return mainTitle + " by " + author + " published in " + releaseDate;
+        return "#" + reference + " | " + mainTitle + " - " + (subTitle != null ? subTitle + " " : "") +
+                "by " + author + " (" + releaseDate + ")";
+    }
+
+    /**
+     * Gets the reference code for the book.
+     *
+     * @return The reference code.
+     */
+    public String getReference() {
+        return reference;
     }
 
     /**
@@ -81,4 +105,5 @@ public class Book {
     public String getAuthor() {
         return author;
     }
+
 }
