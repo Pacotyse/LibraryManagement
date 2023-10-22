@@ -20,6 +20,21 @@ public class Library {
     }
 
     /**
+     * Find a registered book to the library.
+     *
+     * @param title The title of the registered book to find.
+     * @return book Return the book object found.
+     */
+    public static Book findBook(String title) {
+        for (Book book : books) {
+            if (book.getTitle().equals(title)) {
+                return book;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Add a new book to the library.
      *
      * @param title       The title of the book.
@@ -37,13 +52,12 @@ public class Library {
      * @param title The title of the book to delete.
      */
     public static void deleteBook(String title) {
-        Iterator<Book> iterator = books.iterator();
-        while (iterator.hasNext()) {
-            Book book = iterator.next();
-            if (book.getTitle().equals(title)) {
-                iterator.remove();
-                System.out.println("Livre supprimé : " + book.toString());
-            }
+        Book book = findBook(title);
+        if (book != null) {
+            books.remove(book);
+            System.out.println("Le livre " + book + " a été supprimé");
+        } else {
+            System.out.println("Aucun livre ne correspond à : " + title);
         }
     }
 
@@ -53,7 +67,6 @@ public class Library {
     public static void viewUsers() {
         users.forEach(System.out::println);
     }
-
 
     /**
      * Find a registered user to the library.
