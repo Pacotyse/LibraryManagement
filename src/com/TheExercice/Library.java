@@ -123,5 +123,26 @@ public class Library {
             }
         }
     }
+
+    /**
+     * Deletes a loan based on the book's title.
+     *
+     * @param title The title of the book associated with the loan to delete.
+     */
+    public static void deleteLoan(String title) {
+        Book book = findBy(books, b -> b.getTitle().equals(title));
+        if (book != null) {
+            Loan loan = findBy(loans, b -> b.getBook().equals(book));
+            if (loan != null) {
+                loan.getUser().giveBackBook(book);
+                loans.remove(loan);
+                System.out.println(loan.getUser().toString() + " a rendu " + book.getTitle());
+            } else {
+                System.out.println(book.getTitle() + " n'a pas été emprunté");
+            }
+        } else {
+            System.out.println(title + " n'existe pas");
+        }
+    }
 }
 
