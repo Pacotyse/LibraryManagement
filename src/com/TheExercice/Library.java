@@ -3,6 +3,7 @@ package com.TheExercice;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * This class represents a library that manages books, users, and loans.
@@ -13,25 +14,27 @@ public class Library {
     private static List<Loan> loans = new ArrayList<>();
 
     /**
+     * This method can find an item in a specified ArrayList based on a given Predicate.
+     *
+     * @param list      The ArrayList where all data is stored.
+     * @param predicate A Predicate that defines the condition for the item to be found.
+     * @param <T>       The type of elements in the ArrayList and the Predicate.
+     * @return The first item in the ArrayList that satisfies the given Predicate, or null if no such item is found.
+     */
+    public static <T> T findBy(List<T> list, Predicate<T> predicate) {
+        for (T item : list) {
+            if (predicate.test(item)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Display the list of books in the library.
      */
     public static void viewBooks() {
         books.forEach(System.out::println);
-    }
-
-    /**
-     * Find a registered book to the library.
-     *
-     * @param title The title of the registered book to find.
-     * @return book Return the book object found.
-     */
-    public static Book findBook(String title) {
-        for (Book book : books) {
-            if (book.getTitle().equals(title)) {
-                return book;
-            }
-        }
-        return null;
     }
 
     /**
@@ -44,6 +47,7 @@ public class Library {
     public static void addBook(String title, String author, int releaseDate) {
         Book book = new Book(title, author, releaseDate);
         books.add(book);
+        System.out.println(book.toString() + " a été ajouté");
     }
 
     /**
@@ -52,7 +56,7 @@ public class Library {
      * @param title The title of the book to delete.
      */
     public static void deleteBook(String title) {
-        Book book = findBook(title);
+        Book book = findBy(books, b -> b.getTitle().equals(title) );
         if (book != null) {
             books.remove(book);
             System.out.println("Le livre " + book + " a été supprimé");
@@ -69,21 +73,6 @@ public class Library {
     }
 
     /**
-     * Find a registered user to the library.
-     *
-     * @param id The id of the registered user to find.
-     * @return user Return the user object found.
-     */
-    public static User findUser(String id) {
-        for (User user : users) {
-            if (user.toString().equals(id)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    /**
      * Add a new user to the library.
      *
      * @param name The name of the user.
@@ -91,6 +80,7 @@ public class Library {
     public static void addUser(String name) {
         User user = new User(name);
         users.add(user);
+        System.out.println("L'utilisateur " + user.toString() + " a été créé");
     }
 
     /**
@@ -99,7 +89,7 @@ public class Library {
      * @param id The id of the registered user to delete.
      */
     public static void deleteUser(String id) {
-        User user = findUser(id);
+        User user = findBy(users, u -> u.toString().equals(id));
         if (user != null) {
             users.remove(user);
             System.out.println("L'utilisateur " + user + " a été supprimé");
