@@ -115,8 +115,12 @@ public class Library {
         Book book = findBy(books, b -> b.getTitle().equals(title));
         User user = findBy(users, u -> u.toString().equals(userId));
         if (book != null && user != null) {
-            Loan loan = new Loan(book, user);
-            loans.add(loan);
+            if (!user.borrowedBook(book)) {
+                Loan loan = new Loan(book, user);
+                loans.add(loan);
+            } else {
+                System.out.println(user.toString() + " possède déjà " + book.getTitle());
+            }
         }
     }
 }

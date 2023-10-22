@@ -24,15 +24,11 @@ public class Loan {
         this.book = book;
         this.user = user;
 
-        if (!user.borrowedBook(book)) {
-            borrowBook();
+        borrowBook();
 
-            borrowingDate = calendar.getTime();
-            calendar.add(Calendar.DAY_OF_MONTH, LOAN_DURATION_DAY);
-            returnDate = calendar.getTime();
-        } else {
-            System.out.println(this.user + " possède déjà " + this.book.getTitle());
-        }
+        borrowingDate = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_MONTH, LOAN_DURATION_DAY);
+        returnDate = calendar.getTime();
     }
 
     /**
