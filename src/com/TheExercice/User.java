@@ -6,31 +6,82 @@ import java.util.List;
 /**
  * This class represents a user who can borrow and return books from a library.
  */
-public class User {
-    private String name;
-    private static int registeredNumber = 1;
-    private String id;
-    private List<Book> books;
+public class User implements ReferenceGenerator {
+    private final String reference;
+    private final String firstName;
+    private final String lastName;
+    private final int birthYear;
+    private final List<Book> books;
 
     /**
-     * Constructs a new User object with the specified name.
+     * Constructs a new User object with the specified first name, last name, and birth year.
      *
-     * @param name The name of the user.
+     * @param firstName The first name of the user.
+     * @param lastName  The last name of the user.
+     * @param birthYear The birth year of the user.
      */
-    public User(String name) {
-        this.name = name;
-        this.id = name + "#" + registeredNumber++;
+    public User(String firstName, String lastName, int birthYear) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthYear = birthYear;
         this.books = new ArrayList<>();
+        this.reference = generateRef();
     }
 
     /**
-     * Returns ID as a string representation of the user in the format "Name#ID".
+     * Generates a reference for the user based on their first name, last name, and birth year.
+     *
+     * @return The generated reference.
+     */
+    @Override
+    public String generateRef() {
+        return firstName.charAt(0) + lastName + birthYear;
+    }
+
+    /**
+     * Returns a string representation of the user in the format "FirstName LastName".
      *
      * @return The string representation of the user.
      */
     @Override
     public String toString() {
-        return id;
+        return firstName + " " + lastName;
+    }
+
+    /**
+     * Gets the reference ID of the user.
+     *
+     * @return The reference ID.
+     */
+    public String getReference() {
+        return reference;
+    }
+
+    /**
+     * Gets the first name of the user.
+     *
+     * @return The first name.
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * Gets the last name of the user.
+     *
+     * @return The last name.
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * Gets the birth year of the user.
+     *
+     * @return The birth year.
+     */
+    public int getBirthYear() {
+        return birthYear;
     }
 
     /**
@@ -57,16 +108,7 @@ public class User {
      *
      * @param book The book to return.
      */
-    public void giveBackBook(Book book) {
+    public void returnBook(Book book) {
         books.remove(book);
-    }
-
-    /**
-     * Gets the name of the user.
-     *
-     * @return The name of the user.
-     */
-    public String getName() {
-        return name;
     }
 }

@@ -42,7 +42,7 @@ public class Loan {
      * Allows the user to return the book to the library.
      */
     public void returnBook() {
-        user.giveBackBook(book);
+        user.returnBook(book);
     }
 
     /**
