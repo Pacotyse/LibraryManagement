@@ -54,6 +54,22 @@ public class Library {
         users.forEach(System.out::println);
     }
 
+
+    /**
+     * Find a registered user to the library.
+     *
+     * @param id The id of the registered user to find.
+     * @return user Return the user object found.
+     */
+    public static User findUser(String id) {
+        for (User user : users) {
+            if (user.toString().equals(id)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     /**
      * Add a new user to the library.
      *
@@ -70,13 +86,12 @@ public class Library {
      * @param id The id of the registered user to delete.
      */
     public static void deleteUser(String id) {
-        Iterator<User> iterator = users.iterator();
-        while (iterator.hasNext()) {
-            User user = iterator.next();
-            if (user.toString().equals(id)) {
-                iterator.remove();
-                System.out.println("Utilisateur supprimé : " + user.toString());
-            }
+        User user = findUser(id);
+        if (user != null) {
+            users.remove(user);
+            System.out.println("L'utilisateur " + user + " a été supprimé");
+        } else {
+            System.out.println("Aucun utilisateur ne correspond à : " + id);
         }
     }
 
