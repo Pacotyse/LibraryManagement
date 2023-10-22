@@ -79,5 +79,29 @@ public class Library {
             }
         }
     }
+
+    /**
+     * Display the list of loans registered in the library.
+     */
+    public static void viewLoans() {
+        loans.forEach(System.out::println);
+    }
+
+    /**
+     * Add a new loan to the library.
+     *
+     * @param title The title of book that must be borrowed.
+     * @param user The user who borrow the book.
+     */
+    public static void addLoan(String title, User user) {
+        Iterator<Book> iterator = books.iterator();
+        while (iterator.hasNext()) {
+            Book book = iterator.next();
+            if (book.getTitle().equals(title)) {
+            Loan loan = new Loan(book, user);
+            loans.add(loan);
+            }
+        }
+    }
 }
 
