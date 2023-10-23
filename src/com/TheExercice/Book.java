@@ -10,6 +10,7 @@ public class Book implements ReferenceGenerator {
     private final int volume;
     private final int releaseDate;
     private final String author;
+    private boolean available = true;
 
     /**
      * Constructs a new Book object with the specified mainTitle, subTitle, volume, release date, and author.
@@ -106,4 +107,21 @@ public class Book implements ReferenceGenerator {
         return author;
     }
 
+    /**
+     * Checks if the book is currently available for borrowing.
+     *
+     * @return True if the book is available, false otherwise.
+     */
+    public boolean isAvailable() {
+        return available;
+    }
+
+    /**
+     * Sets the availability status of the book.
+     *
+     * @param available True if the book should be marked as available, false otherwise.
+     */
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 }

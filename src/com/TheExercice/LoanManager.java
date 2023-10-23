@@ -40,8 +40,17 @@ public class LoanManager implements Manager {
             return;
         }
 
+        // Check if the book is still available
+        if (!book.isAvailable()) {
+            System.out.println(book.getReference() + " is currently unavailable");
+            return;
+        }
+
         // Create a new loan and print its details.
         Loan loan = new Loan(book, user, duration);
+
+        // Setting book's available parameter to false
+        loan.getBook().setAvailable(false);
 
         // Add the loan to the library
         loans.add(loan);
@@ -66,6 +75,8 @@ public class LoanManager implements Manager {
             if (loan.getBook().getReference().equals(bookReference)) {
                 // Remove the book from the user's inventory
                 loan.getUser().returnBook(book);
+                // Setting book's available parameter to true
+                loan.getBook().setAvailable(true);
                 // Remove the loan.
                 iterator.remove();
                 // Inform the user about the removed loan.

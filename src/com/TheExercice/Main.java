@@ -6,10 +6,10 @@ public class Main {
         BookManager.addOne("Harry Potter", "L'école des sorciers", 1, 2000, "JK Rowling");
 
         UserManager.addOne("Enzo", "Tison", 1998);
-        LoanManager.addOne("Juj2018", "ETison1998", 10);
-        LoanManager.addOne("Har2000", "ETison1998", 10);
+        UserManager.addOne("Louise", "Manquest", 1999);
 
-        LoanManager.viewAll();
-        LoanManager.deleteOne("Har2000");
+        LoanManager.addOne("Juj2018", "ETison1998", 10);
+        LoanManager.addOne("Juj2018", "LManquest1999", 10);
+
     }
 }
