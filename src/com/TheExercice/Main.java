@@ -10,5 +10,6 @@ public class Main {
         LoanManager.addOne("Har2000", "ETison1998", 10);
 
         LoanManager.viewAll();
+        LoanManager.deleteOne("Har2000");
     }
 }

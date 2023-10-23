@@ -60,15 +60,15 @@ public class UserManager implements Manager {
     /**
      * Deletes a user from the library based on their reference ID.
      *
-     * @param reference The reference ID of the user to delete.
+     * @param userReference The reference ID of the user to delete.
      */
-    public static void deleteOne(String reference) {
+    public static void deleteOne(String userReference) {
         // Find the user with the specified reference ID.
-        User user = Manager.findBy(users, u -> u.getReference().equals(reference));
+        User user = findUser(userReference);
 
         // Check if the user exists.
         if (user == null) {
-            System.out.println(reference + " does not exist.");
+            System.out.println(userReference + " does not exist.");
             return;
         }
 

@@ -1,6 +1,7 @@
 package com.TheExercice;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -47,5 +48,29 @@ public class LoanManager implements Manager {
 
         // Print a message to confirm the loan
         System.out.println(loan);
+    }
+
+    public static void deleteOne(String bookReference) {
+        // Find the book based on its reference IDs.
+        Book book = BookManager.findBook(bookReference);
+
+        if (book == null)
+            System.out.println(bookReference + " does not exist.");
+
+        // Create an iterator for the loans list.
+        Iterator<Loan> iterator = loans.iterator();
+
+        // Iterate through the loans to find and remove loans for the specified book.
+        while (iterator.hasNext()) {
+            Loan loan = iterator.next();
+            if (loan.getBook().getReference().equals(bookReference)) {
+                // Remove the book from the user's inventory
+                loan.getUser().returnBook(book);
+                // Remove the loan.
+                iterator.remove();
+                // Inform the user about the removed loan.
+                System.out.println("#" + loan.getReference() + " | " + loan.getBook().getReference() + " <- " + loan.getUser().getReference());
+            }
+        }
     }
 }
