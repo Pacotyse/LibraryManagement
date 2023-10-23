@@ -18,6 +18,28 @@ public class UserManager implements Manager {
     }
 
     /**
+     * Finds and returns a user with the specified reference ID.
+     *
+     * @param reference The reference ID of the user to find.
+     * @return The user with the specified reference ID, or null if no such user is found.
+     */
+    public static User findUser(String reference) {
+        if (reference == null) {
+            System.out.println("No user's reference provided.");
+            return null;
+        }
+
+        // Find the user with the specified reference ID.
+        User user = Manager.findBy(users, u -> u.getReference().equals(reference));
+
+        if (user == null)
+            System.out.println(reference + " not found.");
+
+        return user;
+    }
+
+
+    /**
      * Adds a new user to the library with the specified details.
      *
      * @param firstName The first name of the user.

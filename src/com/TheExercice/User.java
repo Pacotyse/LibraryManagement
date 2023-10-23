@@ -45,7 +45,7 @@ public class User implements ReferenceGenerator {
      */
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return firstName + " " + lastName + " as " + reference;
     }
 
     /**

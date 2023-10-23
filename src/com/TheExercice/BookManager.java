@@ -18,6 +18,25 @@ public class BookManager implements Manager {
     }
 
     /**
+     * Finds and returns a book based on its reference ID.
+     *
+     * @param reference The reference ID of the book to find.
+     * @return The book with the specified reference ID, or null if no such book is found.
+     */
+    public static Book findBook(String reference) {
+        if (reference == null)
+            System.out.println("No book's reference provided.");
+
+        // Find the book with the specified reference ID.
+        Book book = Manager.findBy(books, b -> b.getReference().equals(reference));
+
+        if (book == null)
+            System.out.println(reference + " not found.");
+
+        return book;
+    }
+
+    /**
      * Adds a new book to the library with the specified details.
      *
      * @param mainTitle   The main title of the book.
@@ -44,7 +63,7 @@ public class BookManager implements Manager {
      */
     public static void deleteOne(String reference) {
         // Try to find the book in the library by its reference.
-        Book book = Manager.findBy(books, b -> b.getReference().equals(reference));
+        Book book = findBook(reference);
 
         if (book == null) {
             // If the book is not found, print a message and return.
